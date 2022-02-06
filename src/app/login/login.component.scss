@@ -16,7 +16,9 @@
     h1 {
       @extend %flexCenterCenter;
     }
-
+    &.ng-submitted input.ng-invalid {
+      border: 1px solid red;
+    }
     input {
       width: 100%;
       margin: 5px 0;
@@ -24,10 +26,6 @@
       border-radius: 10px;
       border: 1px solid grey;
       font-size: 1.1em;
-
-      &.ng-touched.ng-invalid {
-        border: 1px solid red;
-      }
     }
 
     .eye-container {

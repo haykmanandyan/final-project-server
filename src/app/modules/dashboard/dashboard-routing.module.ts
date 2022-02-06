@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {DashboardComponent} from "./dashboard.component";
 import {UsersComponent} from "./components/users/users.component";
 import {PostsComponent} from "./components/posts/posts.component";
 import {TodosComponent} from "./components/todos/todos.component";
-import {DashboardComponent} from "./dashboard.component";
 import {CommentsComponent} from "./components/comments/comments.component";
 import {DashboardGuard, LeavePageGuard} from "../../common/guards";
 import {AddTodoComponent} from "./components/todos/add-todo/add-todo.component";

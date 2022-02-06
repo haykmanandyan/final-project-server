@@ -11,10 +11,9 @@ import {TodoService, UserService} from "../../../../../common/services";
   styleUrls: ['./todo-info.component.scss']
 })
 export class TodoInfoComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
-
   public todo: Todo;
   public user: User;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,27 +23,31 @@ export class TodoInfoComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.getData();
+    this.getTodoInfo();
   }
 
-  private getData(): void {
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
+  }
+
+  private getTodoInfo(): void {
     this.todoService.getTodo(+(this.activatedRoute.snapshot.params['id']))
       .pipe(
         takeUntil(this.destroy$),
       )
       .subscribe((todo: Todo) => {
         this.todo = todo;
-        this.userService.getUser(this.todo.userId)
-          .pipe(
-            takeUntil(this.destroy$),
-          )
-          .subscribe((user: User) => this.user = user)
+        this.getUser();
       })
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.unsubscribe();
+  private getUser() {
+    this.userService.getUser(this.todo.userId)
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((user: User) => this.user = user)
   }
 
 }

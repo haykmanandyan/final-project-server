@@ -1,7 +1,7 @@
 import {Subject, takeUntil} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {Post, User} from "../../../../../common/interfaces";
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Post, User} from "../../../../../common/interfaces";
 import {PostService, UserService} from "../../../../../common/services";
 
 @Component({
@@ -22,22 +22,26 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.getData();
+    this.getPostInfo();
   }
 
-  private getData(): void {
+  private getPostInfo(): void {
     this.postService.getPost(+(this.activatedRoute.snapshot.params['id']))
       .pipe(
         takeUntil(this.destroy$)
       )
       .subscribe((post: Post) => {
         this.post = post;
-        this.userService.getUser(this.post.userId)
-          .pipe(
-            takeUntil(this.destroy$)
-          )
-          .subscribe((user: User) => this.user = user);
+        this.getUser();
       });
+  }
+
+  private getUser() {
+    this.userService.getUser(this.post.userId)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((user: User) => this.user = user);
   }
 
   public ngOnDestroy(): void {

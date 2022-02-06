@@ -4,9 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   public loader = false;
@@ -21,18 +19,16 @@ export class LoginComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.loginCheck();
+  }
+
+  private loginCheck() {
     if (this.authService.user.email) {
       this.router.navigate(['dashboard']);
     }
     this.loginForm = new FormGroup({
-      'email': new FormControl(
-        null,
-        [Validators.required, Validators.email]
-      ),
-      'password': new FormControl(
-        null,
-        [Validators.required, Validators.minLength(8)]
-      ),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(8)]),
     })
   }
 
@@ -56,6 +52,5 @@ export class LoginComponent implements OnInit {
   public onSelectEye(): void {
     this.checkEye = !this.checkEye;
   }
-
 
 }

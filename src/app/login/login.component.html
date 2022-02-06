@@ -1,52 +1,51 @@
 <div class="whole-view">
 
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" #f="ngForm">
     <h1>Sign Up</h1>
 
-    <input type="email" placeholder="Email" formControlName="email">
-    <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
-        <span *ngIf="loginForm.get('email').dirty && loginForm.get('email').value !== ''; else requiredError">
-          Your email is incorrect!
+    <input formControlName="email" placeholder="Email" type="email">
+    <span *ngIf="!loginForm.get('email').valid && f.submitted">
+        <span *ngIf="loginForm.get('email').hasError('required')">
+         The email is required!
         </span>
-      </span>
+
+        <span *ngIf="loginForm.get('email').hasError('email')">
+         The email type is not correct!
+        </span>
+    </span>
 
     <div class="eye-container">
       <input
         [type]="!checkEye ? 'password' : 'text'"
-        placeholder="Password"
-        formControlName="password">
+        formControlName="password"
+        placeholder="Password">
 
       <div (click)="onSelectEye()">
         <i [class]="checkEye ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
       </div>
     </div>
 
-    <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
-          <span *ngIf="loginForm.get('password').dirty &&
-          loginForm.get('password').value !== ''; else requiredError">
-          The password must be at least 8 symbols!
+    <span *ngIf="!loginForm.get('password').valid && f.submitted">
+          <span *ngIf="loginForm.get('password').hasError('required')">
+          The password is required!
           </span>
-        </span>
 
-    <button type="submit" [class.opacity-button]="loader">
+          <span *ngIf="loginForm.get('password').hasError('minlength')">
+          It must be at least {{ loginForm.get('password').errors['minlength'].requiredLength }} characters!
+            It's actual size is {{ loginForm.get('password').errors['minlength'].actualLength }}!
+          </span>
+    </span>
+
+    <button [class.opacity-button]="loader" type="submit">
       <span
-        class="text-span"
-        *ngIf="!loader; else submittedButton">
+        *ngIf="!loader; else submittedButton"
+        class="text-span">
         Submit</span>
-      <span>
-
-
-</span>
     </button>
 
   </form>
 
 </div>
-
-<ng-template #requiredError>
-  The above input can't be empty!
-</ng-template>
 
 <ng-template #submittedButton>
   <img src="assets/images/download-circle-colors.png">

@@ -1,14 +1,14 @@
-<div class="todo-container" *ngIf="minUserId">
+<div class="todo-container">
 
-  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" #f="ngForm">
     <ul class="todo-info">
       <li><strong>User Id*:</strong> <input type="number" formControlName="userId"></li>
       <span
         *ngIf="!todoForm.get('userId').valid"
         class="addition-item"
-        [class.addition-item-red]="(!todoForm.get('userId').valid && todoForm.get('userId').touched)">
+        [class.addition-item-red]="(f.submitted)">
         You can input numbers from {{ minUserId }} to {{ maxUserId }}!
-  </span>
+      </span>
       <li><strong>Title:</strong> <input type="text" formControlName="title"></li>
       <li><strong>Completed*:</strong>
         <div class="radio-box">

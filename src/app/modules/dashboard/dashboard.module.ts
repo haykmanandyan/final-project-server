@@ -23,6 +23,7 @@ import {UsersListComponent} from "./components/users/users-list/users-list.compo
 import {AddCommentComponent} from "./components/comments/add-comment/add-comment.component";
 import {CommentInfoComponent} from "./components/comments/comment-info/comment-info.component";
 import {CommentsListComponent} from "./components/comments/comments-list/comments-list.component";
+import {Components} from "./components/components";
 
 @NgModule({
   declarations: [

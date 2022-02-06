@@ -10,14 +10,10 @@ import {CommentService, PostService, UserService} from "../../../../../common/se
   styleUrls: ['./comment-info.component.scss']
 })
 export class CommentInfoComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
-
   public user: User;
-
   public post: Post;
-
   public comment: CommentInterface;
-
+  private destroy$ = new Subject<void>();
 
   constructor(
     private userService: UserService,
@@ -28,34 +24,42 @@ export class CommentInfoComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.getData();
+    this.getCommentInfo();
   }
 
-  private getData(): void {
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
+  }
+
+  private getCommentInfo(): void {
     this.commentService.getComment(+(this.activatedRoute.snapshot.params['id']))
       .pipe(
         takeUntil(this.destroy$),
       )
       .subscribe((comment: CommentInterface) => {
         this.comment = comment;
-        this.postService.getPost(this.comment.postId)
-          .pipe(
-            takeUntil(this.destroy$),
-          )
-          .subscribe((post: Post) => {
-            this.post = post;
-            this.userService.getUser(this.post.userId)
-              .pipe(
-                takeUntil(this.destroy$),
-              )
-              .subscribe((user: User) => this.user = user);
-          })
+        this.getPostInfo()
       })
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.unsubscribe();
+  private getPostInfo() {
+    this.postService.getPost(this.comment.postId)
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((post: Post) => {
+        this.post = post;
+        this.getUser();
+      })
+  }
+
+  private getUser() {
+    this.userService.getUser(this.post.userId)
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((user: User) => this.user = user);
   }
 
 }

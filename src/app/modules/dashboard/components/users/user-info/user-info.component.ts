@@ -11,10 +11,9 @@ import {PostService, UserService} from "../../../../../common/services";
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
 
-  private destroy$ = new Subject<void>()
   public user: User;
   public posts: Post[] = [];
-
+  private destroy$ = new Subject<void>()
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -24,25 +23,29 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.getData();
-  }
-
-  private getData(): void {
-    this.userService.getUser(+(this.activatedRoute.snapshot.params['id']))
-      .pipe(
-        takeUntil(this.destroy$),
-      )
-      .subscribe((user: User) => this.user = user);
-    this.postService.getUserPosts(+(this.activatedRoute.snapshot.params['id']))
-      .pipe(
-        takeUntil(this.destroy$),
-      )
-      .subscribe((posts: Post[]) => this.posts = posts);
+    this.getUser();
+    this.getUserPosts();
   }
 
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.unsubscribe();
+  }
+
+  private getUser(): void {
+    this.userService.getUser(+(this.activatedRoute.snapshot.params['id']))
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((user: User) => this.user = user);
+  }
+
+  private getUserPosts() {
+    this.postService.getUserPosts(+(this.activatedRoute.snapshot.params['id']))
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((posts: Post[]) => this.posts = posts);
   }
 
 }

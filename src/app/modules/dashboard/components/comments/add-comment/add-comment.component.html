@@ -1,12 +1,12 @@
-<div class="comment-container" *ngIf="maxPostId">
+<div class="comment-container">
 
-  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" #f="ngForm">
     <ul class="comment-info">
       <li><strong>Post Id*:</strong> <input type="number" formControlName="postId"></li>
       <span
         *ngIf="!commentForm.get('postId').valid"
         class="addition-item"
-        [class.addition-item-red]="(!commentForm.get('postId').valid && commentForm.get('postId').touched)">
+        [class.addition-item-red]="(f.submitted)">
         You can input numbers from {{ minPostId }} to {{ maxPostId }}!
   </span>
       <li><strong>Name:</strong> <input type="text" formControlName="name"></li>

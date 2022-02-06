@@ -38,10 +38,6 @@
           width: 100%;
           word-wrap: break-word;
           word-break: break-all;
-
-          &.ng-invalid.ng-touched {
-            border: 1px solid red;
-          }
         }
       }
     }
