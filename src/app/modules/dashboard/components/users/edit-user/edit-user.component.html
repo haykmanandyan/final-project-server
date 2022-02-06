@@ -1,0 +1,38 @@
+<div class="user-container" *ngIf="addMode || userForm.get('name').value">
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <ul class="user-list">
+      <li *ngIf="!addMode"><strong>Id:</strong>{{ activatedRoute.snapshot.params['id'] }}</li>
+      <li><strong>Name*:</strong> <input type="text" formControlName="name"></li>
+      <li><strong>Username*:</strong> <input type="text" formControlName="username"></li>
+      <li><strong>Email*:</strong><input type="text" formControlName="email"></li>
+      <li><strong>Address:</strong>
+        <ul formGroupName="address">
+          <li><strong>City:</strong><input type="text" formControlName="city"></li>
+          <li><strong>Geo:</strong>
+            <ul formGroupName="geo">
+              <li><strong>Lat:</strong><input type="text" formControlName="lat"></li>
+              <li><strong>Long:</strong><input type="text" formControlName="lng"></li>
+            </ul>
+          </li>
+          <li><strong>Street:</strong><input type="text" formControlName="street"></li>
+          <li><strong>Suite:</strong><input type="text" formControlName="suite"></li>
+          <li><strong>Zipcode:</strong><input type="text" formControlName="zipcode"></li>
+        </ul>
+      </li>
+      <li><strong>Phone:</strong><input type="text" formControlName="phone"></li>
+      <li><strong>Website:</strong><input type="text" formControlName="website"></li>
+      <li><strong>Company:</strong>
+        <ul formGroupName="company">
+          <li><strong>Name:</strong><input type="text" formControlName="name"></li>
+          <li><strong>Catch phrase:</strong><input type="text" formControlName="catchPhrase"></li>
+          <li><strong>bs:</strong><input type="text" formControlName="bs"></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="save-button" type="submit">Save</button>
+    <a class="red-button" type="button" (click)="onReset()" *ngIf="!addMode">Reset</a>
+    <a class="green-button" type="button" routerLink="/dashboard/users/users-list">Go Back</a>
+  </form>
+  <p><span>ADDITIONAL!</span> Inputs tagged with * are required!</p>
+</div>

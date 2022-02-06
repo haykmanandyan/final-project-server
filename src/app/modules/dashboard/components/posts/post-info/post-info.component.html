@@ -1,0 +1,57 @@
+<div class="post-container" *ngIf="post">
+
+  <h1>Post info</h1>
+
+  <a
+    class="edit-button"
+    type="button"
+    [routerLink]="['../../', (+(this.activatedRoute.snapshot.params['id'])),'edit-post']">
+    Edit post
+  </a>
+
+  <a
+    class="back-button"
+    routerLink="/dashboard/posts/posts-list">
+    Go back
+  </a>
+
+  <ul class="post-info" *ngIf="post">
+    <li><strong>Id:</strong> {{ post.id }}</li>
+    <li><strong>User Id:</strong> {{ post.userId }}</li>
+    <li><strong>Title:</strong> {{ post.title }}</li>
+    <li><strong>Body:</strong>{{ post.body }}</li>
+  </ul>
+
+  <h1>User info</h1>
+
+  <ul class="user-container" *ngIf="user">
+    <li><strong>Id:</strong> {{ user.id }}</li>
+    <li><strong>Name:</strong> {{ user.name }}</li>
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>Email:</strong>{{ user.email }}</li>
+    <li><strong>Address:</strong>
+      <ul>
+        <li><strong>City:</strong>{{ user.address.city}}</li>
+        <li><strong>Geo:</strong>
+          <ul>
+            <li><strong>Lat:</strong>{{ user.address.geo.lat}}</li>
+            <li><strong>Long:</strong>{{ user.address.geo.lng}}</li>
+          </ul>
+        </li>
+        <li><strong>Street:</strong>{{ user.address.street}}</li>
+        <li><strong>Suite:</strong>{{ user.address.suite}}</li>
+        <li><strong>Zipcode:</strong>{{ user.address.zipcode}}</li>
+      </ul>
+    </li>
+    <li><strong>Phone:</strong>{{ user.phone}}</li>
+    <li><strong>Website:</strong>{{ user.website}}</li>
+    <li><strong>Company:</strong>
+      <ul>
+        <li><strong>Name:</strong>{{ user.company.name }}</li>
+        <li><strong>Catch phrase:</strong>{{ user.company.catchPhrase }}</li>
+        <li><strong>bs:</strong>{{ user.company.bs }}</li>
+      </ul>
+    </li>
+  </ul>
+
+</div>

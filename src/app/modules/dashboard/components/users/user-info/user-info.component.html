@@ -1,0 +1,66 @@
+<div class="user-container" *ngIf="user">
+
+  <h1>User info</h1>
+
+
+  <a
+    type="button"
+    [routerLink]="['../../', (+(this.activatedRoute.snapshot.params['id'])),'edit-user']">
+    Edit user
+  </a>
+
+  <a
+    class="back-button"
+    routerLink="/dashboard/users/users-list">
+    Go back
+  </a>
+
+  <ul class="user-list" *ngIf="user">
+    <li><strong>Id:</strong> {{ user.id }}</li>
+    <li><strong>Name:</strong> {{ user.name }}</li>
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>Email:</strong>{{ user.email }}</li>
+    <li><strong>Address:</strong>
+      <ul>
+        <li><strong>City:</strong>{{ user.address.city}}</li>
+        <li><strong>Geo:</strong>
+          <ul>
+            <li><strong>Lat:</strong>{{ user.address.geo.lat}}</li>
+            <li><strong>Long:</strong>{{ user.address.geo.lng}}</li>
+          </ul>
+        </li>
+        <li><strong>Street:</strong>{{ user.address.street}}</li>
+        <li><strong>Suite:</strong>{{ user.address.suite}}</li>
+        <li><strong>Zipcode:</strong>{{ user.address.zipcode}}</li>
+      </ul>
+    </li>
+    <li><strong>Phone:</strong>{{ user.phone}}</li>
+    <li><strong>Website:</strong>{{ user.website}}</li>
+    <li><strong>Company:</strong>
+      <ul>
+        <li><strong>Name:</strong>{{ user.company.name }}</li>
+        <li><strong>Catch phrase:</strong>{{ user.company.catchPhrase }}</li>
+        <li><strong>bs:</strong>{{ user.company.bs }}</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h1>User posts</h1>
+  <ul class="post-container">
+    <li *ngFor="let post of posts; let i = index">
+      <div>
+        <strong> Id:</strong> {{ post.id }}
+      </div>
+
+      <div>
+        <strong> Title:</strong> {{ post.title }}
+      </div>
+
+      <div>
+        <strong>Post:</strong>{{ post.body }}
+      </div>
+      <hr *ngIf="i !== posts.length - 1">
+    </li>
+  </ul>
+
+</div>

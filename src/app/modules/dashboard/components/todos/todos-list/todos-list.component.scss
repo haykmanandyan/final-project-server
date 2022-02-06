@@ -1,0 +1,46 @@
+@import '../../../../../common/scss/placeholder';
+@import '../../../../../common/scss/mixins';
+
+.todos-container {
+  margin: 15px;
+
+  .search-input {
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 50%;
+      font-size: 1.1em;
+      padding: 5px;
+    }
+  }
+
+  a {
+    @extend %myBtn;
+  }
+
+  ul.todo-list {
+    list-style: none;
+    @extend %flexStartColumn;
+
+    li {
+      @extend %flexStartColumn;
+      @extend %myListStyle;
+      padding: 10px;
+      max-width: 100%;
+      background: rgba(red, 0.3);
+
+      span.highlight {
+        background-color: violet;
+        font-weight: bold;
+      }
+
+      &.completed {
+        text-decoration: line-through;
+        background: rgba(green, 0.3);
+      }
+
+    }
+
+  }
+}

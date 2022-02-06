@@ -1,0 +1,31 @@
+<div class="todo-container" *ngIf="minUserId">
+
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <ul class="todo-info">
+      <li><strong>User Id*:</strong> <input type="number" formControlName="userId"></li>
+      <span
+        *ngIf="!todoForm.get('userId').valid"
+        class="addition-item"
+        [class.addition-item-red]="(!todoForm.get('userId').valid && todoForm.get('userId').touched)">
+        You can input numbers from {{ minUserId }} to {{ maxUserId }}!
+  </span>
+      <li><strong>Title:</strong> <input type="text" formControlName="title"></li>
+      <li><strong>Completed*:</strong>
+        <div class="radio-box">
+          <div class="radio" *ngFor="let boolValue of boolValues | keyvalue">
+            <input
+              class="radio-button"
+              type="radio"
+              formControlName="completed"
+              [value]="boolValue.value">
+            {{ boolValue.key }}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <button class="save-button" type="submit">Save</button>
+    <a class="green-button" type="button" routerLink="/dashboard/todos/todos-list">Go Back</a>
+  </form>
+  <p><span>ADDITIONAL!</span> Inputs tagged with * are required!</p>
+
+</div>

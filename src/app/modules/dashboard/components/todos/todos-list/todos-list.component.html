@@ -1,0 +1,27 @@
+<div class="todos-container" *ngIf="todos[0]">
+
+  <div class="search-input">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search">
+  </div>
+
+  <a
+    type="button"
+    routerLink="../add-new-todo">
+    Add todo
+  </a>
+
+  <ul class="todo-list">
+
+    <div
+      *ngFor="let todo of todos | search: searchText"
+      [routerLink]="['../', todo.id, 'todo-info']">
+      <li
+        [class.completed]="todo.completed">
+        <span>Id: {{ todo.id }}</span>
+        <span>User Id: {{ todo.userId }}</span>
+        <span>Title: {{ todo.title }}</span>
+        <span>Completed: {{ todo.completed }}</span>
+      </li>
+    </div>
+  </ul>
+</div>

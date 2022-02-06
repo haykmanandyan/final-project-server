@@ -1,0 +1,15 @@
+<div class="posts-container" *ngIf="posts[0]">
+  <a
+    type="button"
+    routerLink="../add-new-post">
+    Add post
+  </a>
+
+  <ul class="post-list">
+    <li *ngFor="let post of posts" [routerLink]="['../', post.id, 'post-info']">
+      <span>Id: {{ post.id}}</span>
+      <span>Title: {{ post.title }}</span>
+      <span>Post: {{ post.body }}</span>
+    </li>
+  </ul>
+</div>

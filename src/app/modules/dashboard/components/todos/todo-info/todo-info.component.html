@@ -1,0 +1,54 @@
+<div class="todo-container" *ngIf="todo">
+
+  <h1>Todo info</h1>
+
+  <a
+    class="back-button"
+    routerLink="/dashboard/todos/todos-list">
+    Go back
+  </a>
+
+  <ul class="todo-info" *ngIf="todo">
+    <li><strong>Id:</strong> {{ todo.id }}</li>
+    <li><strong>User Id:</strong> {{ todo.userId }}</li>
+    <li><strong>Title:</strong> {{ todo.title }}</li>
+    <li *ngIf="todo.completed; else notYet"><strong>Completed:</strong>Yes</li>
+  </ul>
+
+  <h1>User info</h1>
+
+  <ul class="user-list" *ngIf="user">
+    <li><strong>Id:</strong> {{ user.id }}</li>
+    <li><strong>Name:</strong> {{ user.name }}</li>
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>Email:</strong>{{ user.email }}</li>
+    <li><strong>Address:</strong>
+      <ul>
+        <li><strong>City:</strong>{{ user.address.city}}</li>
+        <li><strong>Geo:</strong>
+          <ul>
+            <li><strong>Lat:</strong>{{ user.address.geo.lat}}</li>
+            <li><strong>Long:</strong>{{ user.address.geo.lng}}</li>
+          </ul>
+        </li>
+        <li><strong>Street:</strong>{{ user.address.street}}</li>
+        <li><strong>Suite:</strong>{{ user.address.suite}}</li>
+        <li><strong>Zipcode:</strong>{{ user.address.zipcode}}</li>
+      </ul>
+    </li>
+    <li><strong>Phone:</strong>{{ user.phone}}</li>
+    <li><strong>Website:</strong>{{ user.website}}</li>
+    <li><strong>Company:</strong>
+      <ul>
+        <li><strong>Name:</strong>{{ user.company.name }}</li>
+        <li><strong>Catch phrase:</strong>{{ user.company.catchPhrase }}</li>
+        <li><strong>bs:</strong>{{ user.company.bs }}</li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+
+<ng-template #notYet>
+  <li><strong>Completed:</strong>No</li>
+</ng-template>

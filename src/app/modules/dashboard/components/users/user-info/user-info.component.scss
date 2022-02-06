@@ -1,0 +1,49 @@
+@import '../../../../../common/scss/placeholder';
+@import '../../../../../common/scss/mixins';
+
+.user-container {
+  margin: 15px;
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  a {
+    @extend %myBtn;
+    &.back-button {
+      background: #cccbcb;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    &.user-list,
+    &.post-container {
+      margin-bottom: 25px;
+    }
+
+    &.post-container li {
+      flex-direction: column;
+      align-items: flex-start;
+      div {
+        margin: 3px 0;
+      }
+      hr {
+        width: 100%;
+      }
+    }
+
+    strong {
+      margin-right: 5px;
+    }
+
+    li {
+      margin: 3px 0;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

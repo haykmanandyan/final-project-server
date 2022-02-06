@@ -1,0 +1,79 @@
+@import '../../../../../common/scss/placeholder';
+@import '../../../../../common/scss/mixins';
+
+.post-container {
+  margin: 15px;
+
+  form {
+    &.ng-submitted input.ng-invalid {
+      border: 1px solid red;
+    }
+
+    &.ng-submitted span.addition-item {
+      color: red;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-basis: 100%;
+
+      &.post-info {
+        margin-bottom: 25px;
+      }
+
+      strong {
+        white-space: nowrap;
+        margin-right: 5px;
+      }
+
+      li {
+        margin: 3px 0;
+        padding: 3px;
+        display: flex;
+        align-items: center;
+
+        input {
+          width: 100%;
+          word-wrap: break-word;
+          word-break: break-all;
+
+          &.ng-invalid.ng-touched {
+            border: 1px solid red;
+          }
+        }
+      }
+    }
+
+    a, button {
+      @extend %myBtn;
+
+      &.save-button {
+        background: green;
+      }
+
+      &.red-button {
+        margin-left: 5px;
+        background: red;
+      }
+
+      &.green-button {
+        margin-left: 5px;
+      }
+    }
+  }
+
+
+  span {
+    color: red;
+
+    &.addition-item {
+      color: black;
+    }
+
+    &.addition-item-red {
+      color: red;
+    }
+  }
+}

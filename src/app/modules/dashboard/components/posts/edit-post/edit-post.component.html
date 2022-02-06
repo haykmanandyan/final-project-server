@@ -1,0 +1,27 @@
+<div class="post-container" *ngIf="currentUserId || minUserId">
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <ul class="post-info">
+      <li *ngIf="!addMode"><strong>Id:</strong>{{ +activatedRoute.snapshot.params['id'] }}</li>
+      <ng-container *ngIf="addMode; else additionInfo">
+        <li><strong>User Id*:</strong> <input type="number" formControlName="userId"></li>
+        <span
+          *ngIf="!postForm.get('userId').valid"
+          class="addition-item"
+          [class.addition-item-red]="(!postForm.get('userId').valid && postForm.get('userId').touched)">
+        You can input numbers from {{ minUserId }} to {{ maxUserId }}!
+  </span>
+      </ng-container>
+      <li><strong>Title:</strong> <input type="text" formControlName="title"></li>
+      <li><strong>Body:</strong> <input type="text" formControlName="body"></li>
+    </ul>
+    <button class="save-button" type="submit">Save</button>
+    <a class="red-button" type="button" (click)="onReset()" *ngIf="!addMode">Reset</a>
+    <a class="green-button" type="button" routerLink="/dashboard/posts/posts-list">Go Back</a>
+  </form>
+  <p><span>ADDITIONAL!</span> Inputs tagged with * are required!</p>
+</div>
+
+<ng-template #additionInfo>
+  <li><strong>User Id:</strong>{{ currentUserId }}</li>
+</ng-template>

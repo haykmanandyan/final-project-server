@@ -1,0 +1,27 @@
+@import '../../../../../common/scss/placeholder';
+@import '../../../../../common/scss/mixins';
+
+.comments-container {
+  margin: 15px;
+
+  a {
+    @extend %myBtn;
+  }
+
+  ul.comment-list {
+    list-style: none;
+    @extend %flexStartColumn;
+
+    li {
+      @extend %flexStartColumn;
+      @extend %myListStyle;
+      padding: 10px;
+      max-width: 100%;
+
+      &:hover {
+        transform: translateX(30px);
+      }
+    }
+
+  }
+}

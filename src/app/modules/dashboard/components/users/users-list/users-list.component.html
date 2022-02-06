@@ -1,0 +1,15 @@
+<div class="users-container"
+     *ngIf="users[0]">
+  <a
+    type="button"
+    routerLink="../add-new-user">
+    Add user
+  </a>
+  <ul class="user-list">
+    <li *ngFor="let user of users" [routerLink]="['../', user.id, 'user-info']">
+      <span>Name: {{ user.name }}</span>
+      <span>Email: {{ user.email }}</span>
+      <span>Website: {{ user.website }}</span>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+<nav>
+  <ul class="navbar-list">
+    <a
+      *ngFor="let item of navbarItems"
+      routerLink="{{ item.item }}"
+      routerLinkActive="active-link">
+      {{ item.item | capitalizeFirstLetter}}
+    </a>
+    <a (click)="onLogOut()">
+      Log Out
+    </a>
+  </ul>
+</nav>
+
+<div class="loader" *ngIf="loaderService.showLoader">
+</div>
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,14 @@
+<div class="comments-container" *ngIf="comments[0]">
+  <a
+    type="button"
+    routerLink="../add-new-comment">
+    Add comment
+  </a>
+  <ul class="comment-list">
+    <li *ngFor="let comment of comments" [routerLink]="['../', comment.id, 'comment-info']">
+      <span>Id: {{ comment.id}}</span>
+      <span>Name: {{ comment.name }}</span>
+      <span>Comment: {{ comment.body }}</span>
+    </li>
+  </ul>
+</div>

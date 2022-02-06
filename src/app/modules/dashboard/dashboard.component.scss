@@ -1,0 +1,19 @@
+@import '../../common/scss/placeholder';
+@import '../../common/scss/mixins';
+
+nav ul.navbar-list {
+  margin: 0 10px;
+  list-style: none;
+  @extend %flexStart;
+  a {
+    padding: 10px 25px;
+    @extend %myListStyle;
+    &.active-link {
+      &:hover {
+        box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+        border: 1px solid transparent;
+      }
+      background: rgba(#8393bd, 0.7);
+    }
+  }
+}

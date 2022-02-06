@@ -1,0 +1,21 @@
+<div class="comment-container" *ngIf="maxPostId">
+
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <ul class="comment-info">
+      <li><strong>Post Id*:</strong> <input type="number" formControlName="postId"></li>
+      <span
+        *ngIf="!commentForm.get('postId').valid"
+        class="addition-item"
+        [class.addition-item-red]="(!commentForm.get('postId').valid && commentForm.get('postId').touched)">
+        You can input numbers from {{ minPostId }} to {{ maxPostId }}!
+  </span>
+      <li><strong>Name:</strong> <input type="text" formControlName="name"></li>
+      <li><strong>Email:</strong> <input type="text" formControlName="email"></li>
+      <li><strong>Body:</strong> <input type="text" formControlName="body"></li>
+    </ul>
+    <button class="save-button" type="submit">Save</button>
+    <a class="green-button" type="button" routerLink="/dashboard/comments/comments-list">Go Back</a>
+  </form>
+  <p><span>ADDITIONAL!</span> Inputs tagged with * are required!</p>
+
+</div>
