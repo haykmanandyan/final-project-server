@@ -9,14 +9,17 @@ export class SearchPipe implements PipeTransform {
   transform(todos: Todo[], searchText: string): Todo[] {
     let result: Todo[] = [];
     todos.forEach((todo: Todo) => {
-      Object.values(todo).forEach((item: any) => {
+      Object.values(todo).forEach((item) => {
         if (item.toString().toLowerCase().includes(searchText.toLowerCase())) {
           result.push(todo);
           return;
         }
       });
     })
-    return result;
-  }
 
+    return todos;
+    //     .filter((item: Todo) => item.title.toUpperCase().includes(searchText.toUpperCase()));
+    // }
+
+  }
 }

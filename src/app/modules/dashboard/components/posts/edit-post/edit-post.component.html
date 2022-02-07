@@ -8,7 +8,7 @@
         <span
           *ngIf="!postForm.get('userId').valid"
           class="addition-item"
-          [class.addition-item-red]="(f.submitted)">
+          [class.addition-item-red]="f.submitted">
         You can input numbers from {{ minUserId }} to {{ maxUserId }}!
   </span>
       </ng-container>

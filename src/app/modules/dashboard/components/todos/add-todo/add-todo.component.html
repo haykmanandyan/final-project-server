@@ -6,7 +6,7 @@
       <span
         *ngIf="!todoForm.get('userId').valid"
         class="addition-item"
-        [class.addition-item-red]="(f.submitted)">
+        [class.addition-item-red]="f.submitted">
         You can input numbers from {{ minUserId }} to {{ maxUserId }}!
       </span>
       <li><strong>Title:</strong> <input type="text" formControlName="title"></li>

@@ -19,9 +19,7 @@ export class AddCommentComponent implements OnInit, OnDestroy {
 
   public commentForm: FormGroup = new FormGroup({
     'id': new FormControl(null),
-    'postId': new FormControl(null, [
-      Validators.required,
-    ]),
+    'postId': new FormControl(null, [Validators.required,]),
     'name': new FormControl(null),
     'email': new FormControl(null, Validators.email),
     'body': new FormControl(null),
@@ -48,9 +46,8 @@ export class AddCommentComponent implements OnInit, OnDestroy {
       .subscribe((posts: Post[]) => {
         this.minPostId = posts[0].id;
         this.maxPostId = posts[posts.length - 1].id;
-        this.commentForm.get('postId').addValidators(
-          [Validators.min(this.minPostId), Validators.max(this.maxPostId)]
-        )
+        this.commentForm.get('postId')
+          .addValidators([Validators.min(this.minPostId), Validators.max(this.maxPostId)])
       })
   }
 

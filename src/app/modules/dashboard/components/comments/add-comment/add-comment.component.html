@@ -6,7 +6,7 @@
       <span
         *ngIf="!commentForm.get('postId').valid"
         class="addition-item"
-        [class.addition-item-red]="(f.submitted)">
+        [class.addition-item-red]="f.submitted">
         You can input numbers from {{ minPostId }} to {{ maxPostId }}!
   </span>
       <li><strong>Name:</strong> <input type="text" formControlName="name"></li>

@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   public loader = false;
   public checkEye = false;
   public loginForm: FormGroup;
@@ -35,18 +36,24 @@ export class LoginComponent implements OnInit {
   public onSubmit(): any {
     if (this.loginForm.valid) {
       this.loader = true;
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
+
+      this.sendData()
+        .then(() => {
           this.authService.user = this.loginForm.value;
+
           localStorage.setItem('user', JSON.stringify(this.authService.user));
+
           this.router.navigate(['dashboard']);
-          resolve({'The validation is false': true});
-          this.loader = false;
-          resolve(null);
-        }, 3000)
-      })
-      return promise;
+
+        })
+        .finally(() => this.loader = false);
     }
+  }
+
+  public sendData() {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve('success'), 3000);
+    });
   }
 
   public onSelectEye(): void {

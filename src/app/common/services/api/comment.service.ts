@@ -14,18 +14,15 @@ export class CommentService {
   }
 
   public getComments(): Observable<CommentInterface[]> {
-    return this.http
-      .get<CommentInterface[]>(`comments`)
+    return this.http.get<CommentInterface[]>(`comments`)
   }
 
   public getComment(id: number): Observable<CommentInterface> {
-    return this.http
-      .get<CommentInterface>(`comments/${id}`)
+    return this.http.get<CommentInterface>(`comments/${id}`)
   }
 
   public addComment(newComment: CommentInterface): void {
-    this.http
-      .post<CommentInterface>(`comments`, newComment)
+    this.http.post<CommentInterface>(`comments`, newComment)
       .subscribe((comment: CommentInterface) => console.log(comment));
   }
 
