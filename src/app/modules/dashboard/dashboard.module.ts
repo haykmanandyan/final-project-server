@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AppComponent} from "../../app.component";
 import {TodosComponent} from "./components/todos/todos.component";
 import {PostsComponent} from "./components/posts/posts.component";
 import {UsersComponent} from "./components/users/users.component";
@@ -9,7 +8,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommentsComponent} from "./components/comments/comments.component";
 import {HighlightPipe} from "../../common/pipes/highlight.pipe";
 import {DashboardRoutingModule} from "./dashboard-routing.module";
-import {httpInterceptorProviders} from "../../common/interceptors";
 import {AddTodoComponent} from "./components/todos/add-todo/add-todo.component";
 import {TodoInfoComponent} from "./components/todos/todo-info/todo-info.component";
 import {UserInfoComponent} from "./components/users/user-info/user-info.component";
@@ -28,7 +26,6 @@ import {CommentsListComponent} from "./components/comments/comments-list/comment
   declarations: [
     DashboardComponent,
     CapitalizeFirstLetterPipe,
-    AppComponent,
     UsersComponent,
     UsersListComponent,
     UserInfoComponent,
@@ -48,7 +45,6 @@ import {CommentsListComponent} from "./components/comments/comments-list/comment
     SearchPipe,
     HighlightPipe,
   ],
-  providers: httpInterceptorProviders,
   imports: [
     CommonModule,
     DashboardRoutingModule,

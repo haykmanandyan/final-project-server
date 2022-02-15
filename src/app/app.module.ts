@@ -1,28 +1,22 @@
 import {NgModule} from '@angular/core';
-import {ToastrModule} from "ngx-toastr";
 import {AppComponent} from './app.component';
-import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
-import {LoginComponent} from './login/login.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {DashboardModule} from "./modules/dashboard/dashboard.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import {httpInterceptorProviders} from "./common/interceptors";
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    DashboardModule,
-    ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

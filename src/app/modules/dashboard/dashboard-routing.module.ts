@@ -18,11 +18,12 @@ import {PostsListComponent} from "./components/posts/posts-list/posts-list.compo
 import {AddCommentComponent} from "./components/comments/add-comment/add-comment.component";
 import {CommentInfoComponent} from "./components/comments/comment-info/comment-info.component";
 import {CommentsListComponent} from "./components/comments/comments-list/comments-list.component";
+import {CanLoadChildrenGuardGuard} from "../../common/guards/can-load-children.guard";
 
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
     canActivate: [DashboardGuard],
     children: [
@@ -71,7 +72,6 @@ const routes: Routes = [
       },
     ]
   },
-  {path: '**', redirectTo: 'dashboard'}
 ]
 
 @NgModule({

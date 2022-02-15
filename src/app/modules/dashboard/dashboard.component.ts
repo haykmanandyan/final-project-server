@@ -2,6 +2,7 @@ import {NavItem} from "../../common/interfaces";
 import {Component, OnInit} from '@angular/core';
 import {NAVBAR_ITEMS} from "../../common/constants";
 import {AuthService, LoaderService} from "../../common/services";
+import {ShowContentService} from "../../common/services/show-content.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public loaderService: LoaderService,
+    public showContentService: ShowContentService,
   ) {
   }
 

@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class LoaderService {
   public showLoader = false;
 
-  constructor() {}
-
   public show(): void {
     setTimeout(()=> this.showLoader = true,0);
   }

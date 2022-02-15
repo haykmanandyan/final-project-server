@@ -6,6 +6,9 @@
       routerLinkActive="active-link">
       {{ item.item | capitalizeFirstLetter}}
     </a>
+    <a (click)="showContentService.switchMessage()">
+      {{ showContentService.showContent ? 'Show the children' : 'Show off the children'}}
+    </a>
     <a (click)="onLogOut()">
       Log Out
     </a>

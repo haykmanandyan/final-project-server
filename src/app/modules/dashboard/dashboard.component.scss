@@ -4,6 +4,7 @@
 nav ul.navbar-list {
   margin: 0 10px;
   list-style: none;
+  flex-wrap: wrap;
   @extend %flexStart;
   a {
     padding: 10px 25px;
